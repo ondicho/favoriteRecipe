@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".MainActivity"
+    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -8,11 +15,19 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/recipe1" />
+
     <EditText
         android:id="@+id/searchRecipe"
         android:layout_centerInParent="true"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="search for recipe"
+        android:background="@android:color/white"
+        android:inputType="text"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimaryText"
+        android:textSize="20sp"
+        android:padding="10dp"
         />
 
     <Button
