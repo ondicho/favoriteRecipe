@@ -2,6 +2,7 @@ package com.moringa.favoriterecipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,10 +18,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        Intent intent = getIntent();
     }
 
     @Override
     public void onClick(View v) {
-        if(v==m)
+        if(v==mSearchRecipeButton){
+            String searchedRecipe=mSearchRecipeEditText.getText().toString();
+            Intent intent=new Intent(SearchActivity.this,RecipeActivity.class);
+            intent.putExtra("searchedRecipe",searchedRecipe);
+            startActivity(intent);
+        }
     }
 }
