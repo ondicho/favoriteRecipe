@@ -11,6 +11,7 @@ import android.widget.ListView;
 import butterknife.BindView;
 
 public class RecipeActivity extends AppCompatActivity {
+    private String[] recipes=new String[]{"pizza","chicken","seasoned fries","cold salad"};
 
     private ListView mListView;
     @BindView(R.id.recipesListView) ListView mRecipesListView;
