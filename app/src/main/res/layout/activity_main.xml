@@ -19,8 +19,8 @@
         android:id="@+id/findRecipeButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorAccent"
-        android:textColor="@color/colorTextIcons"
+        android:background="@color/teal_700"
+        android:textColor="@color/black"
         android:layout_marginBottom="30dp"/>
 
 

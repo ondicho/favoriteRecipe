@@ -30,13 +30,13 @@ public class RecipeActivity extends AppCompatActivity {
         ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,recipes);
         mRecipesListView.setAdapter(adapter);
 
-        mRecipesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String recipe=((TextView)view).getText().toString();
-                Toast.makeText(RecipeActivity.this,recipe,Toast.LENGTH_LONG).show();
-            }
-        });
+//        mRecipesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String recipe=((TextView)view).getText().toString();
+//                Toast.makeText(RecipeActivity.this,recipe,Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         Intent intent = getIntent();
         String searchedRecipe=intent.getStringExtra("searchedRecipe");
