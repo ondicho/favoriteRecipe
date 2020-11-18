@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/recipe1" />
+        android:src="@drawable/recipe" />
 
     <EditText
         android:id="@+id/searchRecipe"
@@ -22,7 +22,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="search for recipe"
-        android:background="@android:color/white"
         android:textColor="@color/black"
         android:textColorHint="@color/colorDivider"
         android:textSize="20sp"

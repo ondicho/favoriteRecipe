@@ -7,8 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/recipe"
-        android:textColor="@color/black"/>
+        android:src="@drawable/recipe1" />
 
     <ListView
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         android:id="@+id/recipesListView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/black"
+        android:textColor="@color/colorTextIcons"
         />
 
 </RelativeLayout>
