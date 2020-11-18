@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RecipeActivity extends AppCompatActivity {
     private String[] recipes=new String[]{"pizza","chicken","seasoned fries","cold salad"};
@@ -24,6 +25,7 @@ public class RecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+        ButterKnife.bind(this);
 
 
 

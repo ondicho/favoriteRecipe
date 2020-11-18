@@ -11,20 +11,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
-    @BindView(R.id.findRecipeButton) Button mFindRecipeButton;
+    @BindView(R.id.findRecipeButton)
+    Button mFindRecipeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    public void onClick(View v) {
-        if(v==mFindRecipeButton){
-            Intent intent=new Intent(MainActivity.this,SearchActivity.class);
-            startActivity(intent);
-        }
+        ButterKnife.bind(this);
+
+        mFindRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == mFindRecipeButton) {
+                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }
