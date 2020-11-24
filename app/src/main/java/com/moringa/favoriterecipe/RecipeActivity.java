@@ -12,8 +12,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import models.RecipePuppySearchResponse;
+import models.Result;
+import networking.RecipePuppyApi;
+import networking.RecipePuppyClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecipeActivity extends AppCompatActivity {
     private String[] recipes=new String[]{"pizza","chicken","seasoned fries","cold salad"};
@@ -32,15 +41,39 @@ public class RecipeActivity extends AppCompatActivity {
         ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,recipes);
         mRecipesListView.setAdapter(adapter);
 
-//        mRecipesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String recipe=((TextView)view).getText().toString();
-//                Toast.makeText(RecipeActivity.this,recipe,Toast.LENGTH_LONG).show();
-//            }
-//        });
 
         Intent intent = getIntent();
         String searchedRecipe=intent.getStringExtra("searchedRecipe");
+
+        RecipePuppyApi client=RecipePuppyClient.getClient();
+        Call<RecipePuppySearchResponse> call=client.getRecipe("searchedRecipe");
+
+        call.enqueue(new Callback<RecipePuppySearchResponse>() {
+            @Override
+            public void onResponse(Call<RecipePuppySearchResponse> call, Response<RecipePuppySearchResponse> response) {
+                if(response.isSuccessful()){
+                    List<Result> recipeList=response.body().getResults();
+                    String[] title=new String[recipeList.size()];
+                    String[] recipes=new String[recipeList.size()];
+
+                    for (int i=0;i<title.length;i++){
+                        title[i]=recipeList.get(i).getTitle();
+                    }
+                    for (int i=0;i<recipes.length;i++){
+                        recipes[i]=recipeList.get(i).getIngredients();
+                    }
+                    ArrayAdapter adapter
+                            = new ArrayAdapter(RecipeActivity.this, android.R.layout.simple_list_item_1, title);
+                    mListView.setAdapter(adapter);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RecipePuppySearchResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

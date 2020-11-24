@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RecipePuppyClient {
     private static Retrofit retrofit=null;
 
-    public  static RecipePuppyApi getRecipe(){
+    public  static RecipePuppyApi getClient(){
         if(retrofit==null){
             OkHttpClient okHttpClient=new OkHttpClient.Builder()
                     .addInterceptor(new Interceptor() {
