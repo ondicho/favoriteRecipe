@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +27,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RecipeActivity extends AppCompatActivity {
+    public static final String TAG="RecipeActivity";
     private String[] recipes=new String[]{"pizza","chicken","seasoned fries","cold salad"};
 
     private ListView mListView;
     @BindView(R.id.recipesListView) ListView mRecipesListView;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +71,37 @@ public class RecipeActivity extends AppCompatActivity {
                             = new ArrayAdapter(RecipeActivity.this, android.R.layout.simple_list_item_1, title);
                     mListView.setAdapter(adapter);
 
+                    showRecipes();
+                } else {
+                    showUnsuccessfulMessage();
                 }
-
             }
 
             @Override
             public void onFailure(Call<RecipePuppySearchResponse> call, Throwable t) {
-
+            Log.e(TAG, "onFailure: ",t );
+            hideProgressBar();
+            showFailureMessage();
             }
         });
     }
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+    private void showRecipes() {
+        mListView.setVisibility(View.VISIBLE);
+//        mLocationTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+
 }
