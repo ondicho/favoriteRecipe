@@ -23,7 +23,8 @@ public class RecipePuppyClient {
                         @NotNull
                         @Override
                         public Response intercept(@NotNull Chain chain) throws IOException {
-                            Request newRequest=chain.request().newBuilder().build();
+                            Request newRequest=chain.request().newBuilder()
+                                    .build();
                             return chain.proceed(newRequest);
                         }
                     })
