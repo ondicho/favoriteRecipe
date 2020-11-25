@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -46,16 +47,18 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     @NonNull
     @Override
     public RecipeListAdapter.RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_item,parent,false);
+       RecipeViewHolder viewHolder=new RecipeViewHolder(view);
+       return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecipeListAdapter.RecipeViewHolder holder, int position) {
-
+        holder.bindRecipe(mRecipes.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mRecipes.size();
     }
 }

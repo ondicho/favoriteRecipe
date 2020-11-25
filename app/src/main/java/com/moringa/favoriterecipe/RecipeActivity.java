@@ -1,6 +1,8 @@
 package com.moringa.favoriterecipe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import adapters.RecipeListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import models.RecipePuppySearchResponse;
@@ -27,24 +30,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RecipeActivity extends AppCompatActivity {
-    public static final String TAG="RecipeActivity";
-    private String[] recipes=new String[]{"pizza","chicken","seasoned fries","cold salad"};
+    public static final String TAG=RecipeActivity.class.getSimpleName();
 
-    private ListView mListView;
-    @BindView(R.id.recipesListView) ListView mRecipesListView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
+
+    private RecipeListAdapter mAdapter;
+
+    public List<Result> recipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
         ButterKnife.bind(this);
-
-
-
-        ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,recipes);
-        mRecipesListView.setAdapter(adapter);
 
 
         Intent intent = getIntent();
@@ -58,19 +58,13 @@ public class RecipeActivity extends AppCompatActivity {
             public void onResponse(Call<RecipePuppySearchResponse> call, Response<RecipePuppySearchResponse> response) {
                 Log.d(TAG, "onResponse: Successful");
                 if(response.isSuccessful()){
-                    List<Result> recipeList=response.body().getResults();
-                    String[] title=new String[recipeList.size()];
-                    String[] recipes=new String[recipeList.size()];
+                  recipes=response.body().getResults();
+                  mAdapter=new RecipeListAdapter(RecipeActivity.this,recipes);
 
-                    for (int i=0;i<title.length;i++){
-                        title[i]=recipeList.get(i).getTitle();
-                    }
-                    for (int i=0;i<recipes.length;i++){
-                        recipes[i]=recipeList.get(i).getIngredients();
-                    }
-                    ArrayAdapter adapter
-                            = new ArrayAdapter(RecipeActivity.this, android.R.layout.simple_list_item_1, title);
-                    mListView.setAdapter(adapter);
+                  mRecyclerView.setAdapter(mAdapter);
+                  RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(RecipeActivity.this);
+                  mRecyclerView.setLayoutManager(layoutManager);
+                  mRecyclerView.setHasFixedSize(true);
 
                     showRecipes();
                 } else {
@@ -96,8 +90,7 @@ public class RecipeActivity extends AppCompatActivity {
         mErrorTextView.setVisibility(View.VISIBLE);
     }
     private void showRecipes() {
-        mListView.setVisibility(View.VISIBLE);
-//        mLocationTextView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
