@@ -51,11 +51,12 @@ public class RecipeActivity extends AppCompatActivity {
         String searchedRecipe=intent.getStringExtra("searchedRecipe");
 
         RecipePuppyApi client=RecipePuppyClient.getClient();
-        Call<RecipePuppySearchResponse> call=client.getRecipe("searchedRecipe");
+        Call<RecipePuppySearchResponse> call=client.getRecipe(searchedRecipe);
 
         call.enqueue(new Callback<RecipePuppySearchResponse>() {
             @Override
             public void onResponse(Call<RecipePuppySearchResponse> call, Response<RecipePuppySearchResponse> response) {
+                Log.d(TAG, "onResponse: Successful");
                 if(response.isSuccessful()){
                     List<Result> recipeList=response.body().getResults();
                     String[] title=new String[recipeList.size()];

@@ -6,8 +6,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface RecipePuppyApi {
-    @GET("/?q=")
+    @GET(" ")
     Call<RecipePuppySearchResponse> getRecipe(
-            @Query("location") String title
+            @Query("q") String title
     );
 }
