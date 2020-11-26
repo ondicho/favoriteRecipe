@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  */
 public class RecipeDetailFragment extends Fragment {
 
-    @BindView(R.id.imageView) ImageView mImageLabel;
+//    @BindView(R.id.imageView) ImageView mImageLabel;
     @BindView(R.id.recipeTitleTextView) TextView mTitleLabel;
     @BindView(R.id.ingredientsTextView) TextView mIngredientsLabel;
     @BindView(R.id.thumbnailTextView) TextView mThumbnailLabel;
@@ -65,7 +65,7 @@ public class RecipeDetailFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         ButterKnife.bind(this,view);
-        Picasso.get().load(mRecipe.getHref()).into(mImageLabel);
+//        Picasso.get().load(mRecipe.getHref()).into(mImageLabel);
 
         List<Result> ingredients=new ArrayList<>();
 
