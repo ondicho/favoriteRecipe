@@ -38,7 +38,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         @BindView(R.id.recipeImageView) ImageView mRecipeImageView;
         @BindView(R.id.recipeTitleTextView) TextView mRecipeTitleTextView;
         @BindView(R.id.ingredientsTextView) TextView mIngredientsTextView;
-        @BindView(R.id.thumbnailTextView) TextView mThumbnailTextView;
+//        @BindView(R.id.thumbnailTextView) TextView mThumbnailTextView;
 
         private Context mContext;
 
@@ -53,7 +53,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         public void bindRecipe(Result recipe){
             mRecipeTitleTextView.setText(recipe.getTitle());
             mIngredientsTextView.setText(recipe.getIngredients());
-            mThumbnailTextView.setText(recipe.getThumbnail());
+//            mThumbnailTextView.setText(recipe.getThumbnail());
 
         }
 

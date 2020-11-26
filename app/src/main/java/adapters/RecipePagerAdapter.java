@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RestaurantPagerAdapter extends FragmentPagerAdapter {
+public class RecipePagerAdapter extends FragmentPagerAdapter {
     private List<Result> mRecipes;
-    public RestaurantPagerAdapter(@NonNull FragmentManager fm, int behavior, List<Result> recipes) {
+    public RecipePagerAdapter(@NonNull FragmentManager fm, int behavior, List<Result> recipes) {
         super(fm, behavior);
         mRecipes=recipes;
     }
