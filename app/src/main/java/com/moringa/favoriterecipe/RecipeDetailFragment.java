@@ -57,7 +57,7 @@ public class RecipeDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mRecipe=Parcels.unwrap(getArguments().getParcelable("recipe"));
         }
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
