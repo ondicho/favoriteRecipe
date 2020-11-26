@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,15 @@ import com.moringa.favoriterecipe.R;
 
 import java.util.List;
 
+import org.parceler.Parcels;
+import com.squareup.picasso.Picasso;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import models.Result;
+import com.moringa.favoriterecipe.RecipeDetailActivity;
 
-public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder>{
+public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
     private List<Result> mRecipes;
     private Context mContext;
 
@@ -26,10 +31,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         mContext=context;
         mRecipes=recipes;
     }
-    public class RecipeViewHolder extends RecyclerView.ViewHolder{
+
+
+
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.recipeImageView) ImageView mRecipeImageView;
         @BindView(R.id.recipeTitleTextView) TextView mRecipeTitleTextView;
         @BindView(R.id.ingredientsTextView) TextView mIngredientsTextView;
+        @BindView(R.id.thumbnailTextView) TextView mThumbnailTextView;
 
         private Context mContext;
 
@@ -37,11 +46,24 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+
+            itemView.setOnClickListener(this);
         }
 
         public void bindRecipe(Result recipe){
             mRecipeTitleTextView.setText(recipe.getTitle());
             mIngredientsTextView.setText(recipe.getIngredients());
+            mThumbnailTextView.setText(recipe.getThumbnail());
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent=new Intent(mContext,RecipeDetailActivity.class);
+            intent.putExtra("position",itemPosition);
+            intent.putExtra("recipes",Parcels.wrap(mRecipes));
+            mContext.startActivity(intent);
         }
     }
     @NonNull
@@ -61,4 +83,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     public int getItemCount() {
         return mRecipes.size();
     }
+
+
 }
