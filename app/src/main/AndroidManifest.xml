@@ -13,7 +13,13 @@
         android:theme="@style/Theme.favoriteRecipe"
         android:usesCleartextTraffic="true">
         <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" android:theme="@style/NoActionBarTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".RecipeDetailActivity" />
         <activity android:name=".RecipeActivity">
             <meta-data
@@ -26,14 +32,7 @@
                 android:value="com.moringa.favoriterecipe.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/NoActionBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".MainActivity"/>
     </application>
 
 </manifest>
