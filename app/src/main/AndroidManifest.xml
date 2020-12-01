@@ -12,16 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.favoriteRecipe"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RecipeDetailActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RecipeDetailActivity" />
         <activity android:name=".RecipeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moringa.favoriterecipe.SearchActivity"></meta-data>
+                android:value="com.moringa.favoriterecipe.SearchActivity" />
         </activity>
         <activity android:name=".SearchActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moringa.favoriterecipe.MainActivity"></meta-data>
+                android:value="com.moringa.favoriterecipe.MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
