@@ -10,8 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moringa.favoriterecipe.R;
+
+import Constants.Constants;
 import models.Result;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +33,7 @@ import butterknife.ButterKnife;
  * Use the {@link RecipeDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecipeDetailFragment extends Fragment {
+public class RecipeDetailFragment extends Fragment implements View.OnClickListener {
 
 //    @BindView(R.id.imageView) ImageView mImageLabel;
     @BindView(R.id.recipeTitleTextView) TextView mTitleLabel;
@@ -73,6 +78,18 @@ public class RecipeDetailFragment extends Fragment {
         mIngredientsLabel.setText(mRecipe.getIngredients());
         mThumbnailLabel.setText(mRecipe.getThumbnail());
 
+        mSaveRecipeButton.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v==mSaveRecipeButton){
+            DatabaseReference recipeRef= FirebaseDatabase.getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RECIPE);
+            recipeRef.push().setValue(mRecipe);
+            Toast.makeText(getContext(),"Recipe Saved",Toast.LENGTH_SHORT).show();
+        }
     }
 }
