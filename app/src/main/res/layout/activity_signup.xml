@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/colorTextIcons"
+            android:textColor="@color/colorPrimaryText"
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="Already have an account? Log in here!"
@@ -95,15 +95,24 @@
 
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/recipeImageView"
+        android:src="@drawable/recipe4"
+        android:scaleType="centerCrop"
+        android:paddingBottom="30dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout"
+        android:layout_marginBottom="27dp"
+        android:layout_marginLeft="130dp"
         android:text="Create Account"
         android:textColor="@color/colorPrimary"
         android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="bold" />
 
 </RelativeLayout>
