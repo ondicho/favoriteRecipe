@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1005631714785",
+    "firebase_url": "https://favoriterecipe-9b013.firebaseio.com",
+    "project_id": "favoriterecipe-9b013",
+    "storage_bucket": "favoriterecipe-9b013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005631714785:android:84c26d59ed3ce88650cea0",
+        "android_client_info": {
+          "package_name": "com.moringa.favoriterecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005631714785-3rb6d11f80j4rkn8ksf5hh2bhcut31nr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringa.favoriterecipe",
+            "certificate_hash": "7a2d442edc031465f6e0066702ed044353f177f9"
+          }
+        },
+        {
+          "client_id": "1005631714785-k77m49nbro4v2u3qhhn0tis3fai80294.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO3aJ_dx3KBMo9pY8yqgN_VNnDDQRWSKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005631714785-k77m49nbro4v2u3qhhn0tis3fai80294.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
