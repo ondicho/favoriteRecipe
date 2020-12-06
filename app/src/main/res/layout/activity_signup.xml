@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/linearLayout">
 
-        <EditText
+eshe        <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,6 +98,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        android:layout_above="@+id/linearLayout"
         android:id="@+id/recipeImageView"
         android:src="@drawable/recipe4"
         android:scaleType="centerCrop"
@@ -105,6 +106,7 @@
         />
 
     <TextView
+        android:id="@+id/signUpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
