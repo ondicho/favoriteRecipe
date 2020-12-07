@@ -32,5 +32,16 @@
         android:textColor="@color/black"
         android:layout_marginBottom="30dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Saved Recipes"
+        android:id="@+id/viewSavedRecipesButton"
+        android:layout_above="@+id/findRecipeButton"
+        android:layout_centerHorizontal="true"
+        android:background="@color/teal_700"
+        android:textColor="@color/black"
+        android:layout_marginBottom="30dp"/>
+
 
 </RelativeLayout>
