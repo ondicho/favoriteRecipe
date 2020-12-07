@@ -28,11 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RecipeDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class RecipeDetailFragment extends Fragment implements View.OnClickListener {
 
 //    @BindView(R.id.imageView) ImageView mImageLabel;
