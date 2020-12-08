@@ -100,7 +100,6 @@ eshe        <EditText
         android:layout_height="180dp"
         android:layout_above="@+id/linearLayout"
         android:id="@+id/recipeImageView"
-        android:layout_above="@+id/linearLayout"
         android:src="@drawable/recipe4"
         android:scaleType="centerCrop"
         android:paddingBottom="30dp"

@@ -80,11 +80,11 @@ android {
         //parceler
         implementation 'org.parceler:parceler-api:1.1.12'
         annotationProcessor 'org.parceler:parceler:1.1.12'
+
+        //
+        implementation 'androidx.appcompat:appcompat:1.2.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     }
     apply plugin: 'com.google.gms.google-services'
 }
 
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-}
