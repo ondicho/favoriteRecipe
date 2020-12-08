@@ -27,6 +27,7 @@ import models.Result;
 
 public class FirebaseRecipeViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+    public ImageView mRecipeImageView;
     View mView;
     Context mContext;
 
@@ -38,12 +39,12 @@ public class FirebaseRecipeViewHolder  extends RecyclerView.ViewHolder implement
     }
 
     public void bindRecipe(Result recipe){
-        ImageView recipeImageView=(ImageView) mView.findViewById(R.id.imageView);
+        mRecipeImageView=(ImageView) mView.findViewById(R.id.imageView);
         TextView  titleTextview=(TextView) mView.findViewById(R.id.recipeTitleTextView);
         TextView  ingredientsTextview=(TextView) mView.findViewById(R.id.ingredientsTextView);
         TextView  thumbnailTextView=(TextView) mView.findViewById(R.id.thumbnailTextView);
 
-        Picasso.get().load(recipe.getThumbnail()).into(recipeImageView);
+        Picasso.get().load(recipe.getThumbnail()).into(mRecipeImageView);
 
         titleTextview.setText(recipe.getTitle());
         ingredientsTextview.setText(recipe.getIngredients());

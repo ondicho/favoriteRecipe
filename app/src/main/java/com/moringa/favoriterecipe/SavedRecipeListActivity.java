@@ -2,6 +2,7 @@ package com.moringa.favoriterecipe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,19 +13,25 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import Constants.Constants;
+import adapters.FirebaseRecipeListAdapter;
 import adapters.FirebaseRecipeViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import models.Result;
+import util.ItemTouchHelperAdapter;
+import util.OnStartDragListener;
+import util.SimpleItemTouchHelperCallback;
 
-public class SavedRecipeListActivity extends AppCompatActivity {
+public class SavedRecipeListActivity extends AppCompatActivity implements OnStartDragListener {
     private DatabaseReference mRecipeReference;
     private FirebaseRecyclerAdapter<Result, FirebaseRecipeViewHolder> mFirebaseAdapter;
-
+    private ItemTouchHelper mItemTouchHelper;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -34,32 +41,26 @@ public class SavedRecipeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe);
         ButterKnife.bind(this);
 
-        mRecipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE  );
+
         setUpFirebaseAdapter();
     }
 
-    private void setUpFirebaseAdapter(){
+    private void setUpFirebaseAdapter() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        mRecipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE).child(uid);
         FirebaseRecyclerOptions<Result> options =
                 new FirebaseRecyclerOptions.Builder<Result>()
                         .setQuery(mRecipeReference, Result.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Result, FirebaseRecipeViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull FirebaseRecipeViewHolder firebaseRestaurantViewHolder, int position, @NonNull Result recipe) {
-                firebaseRestaurantViewHolder.bindRecipe(recipe);
-            }
-
-            @NonNull
-            @Override
-            public FirebaseRecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_item, parent, false);
-                return new FirebaseRecipeViewHolder(view);
-            }
-        };
-
+        mFirebaseAdapter = new FirebaseRecipeListAdapter(options, mRecipeReference, this, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback((ItemTouchHelperAdapter) mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -74,5 +75,8 @@ public class SavedRecipeListActivity extends AppCompatActivity {
         if(mFirebaseAdapter!= null) {
             mFirebaseAdapter.stopListening();
         }
+    }
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder){
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }
