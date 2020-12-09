@@ -90,6 +90,7 @@ public class RecipeActivity extends AppCompatActivity {
                   mRecyclerView.setHasFixedSize(true);
 
                     showRecipes();
+                    hideProgressBar();
                 } else {
                     showUnsuccessfulMessage();
                 }

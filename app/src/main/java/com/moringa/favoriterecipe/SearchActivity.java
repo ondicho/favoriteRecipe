@@ -66,6 +66,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
 
+
         mSharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
         mEditor=mSharedPreferences.edit();
 
