@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.favoriteRecipe"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LaunchActivi">
+        <activity android:name=".LaunchActivity"    android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
